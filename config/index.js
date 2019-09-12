@@ -10,12 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    // vue设置的代理，用以解决 跨域 问题
     proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    //设置端口号
+    port: 8089, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    // 启动工程时，自动打开浏览器
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
@@ -45,6 +48,7 @@ module.exports = {
 
   build: {
     // Template for index.html
+    // 配置打包后入口.html文件的名称以及文件夹名称
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
