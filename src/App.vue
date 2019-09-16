@@ -1,15 +1,28 @@
 <template>
   <div class="wrapper">
+    <v-header></v-header>
+    <div class="tabs">
+      <div class="tab-item">
+        <router-link to="/Goods">商品</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/Comments">评论</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/Seller">商家</router-link>
+      </div>
+    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Home from './views/Home/Home'
+import header from './components/header/header'
+
 export default {
   name: 'App',
   components: {
-    'home': Home
+    'v-header': header
   }
 }
 </script>
