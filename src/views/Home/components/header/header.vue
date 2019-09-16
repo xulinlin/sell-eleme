@@ -55,7 +55,7 @@ export default {
     position: absolute;
     left: 30px;
     right: 30px;
-    top: 10px;
+    top: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
