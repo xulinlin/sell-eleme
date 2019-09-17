@@ -6,7 +6,26 @@
           <div class="title-box">{{item.name}}</div>
           <ul class="ul-inner-box">
             <li v-for="(food, index) in item.foods" :key="index">
-              <div class="food-box"></div>
+              <div class="food-box">
+                <div class="left-box">
+                  <img class="food-img" :src="food.icon" />
+                  <div class="content-box">
+                    <div class="food-name-text">{{food.name}}</div>
+                    <div class="food-decs-text" v-show="food.description">{{food.description}}</div>
+                    <div class="sell-info-box">
+                      <span class="sell-info-count-text">月售{{food.sellCount}}份</span>
+                      <span class="sell-info-count-text">好评率{{food.rating}}%</span>
+                    </div>
+                    <div class="price-box">
+                      <span class="price-text">￥{{food.price}}</span>
+                      <span v-show="food.oldPrice" class="old-price-text">￥{{food.oldPrice}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="right-box">
+                  <i class="add-icon"></i>
+                </div>
+              </div>
             </li>
           </ul>
         </li>
@@ -26,31 +45,26 @@ export default {
         return []
       }
     }
-  },
-  components: {
   }
 }
 </script>
 
 <style lang="less" scoped>
 .food-list-wrapper {
-  background-color: #fcfccf;
-  height: 450px;
-  overflow: hidden;
   .ul-out-wrapper {
     position: relative;
     width: 100%;
-    // height: 450px;
-
     overflow: hidden;
+    height: 450px;
     .ul-out-box {
-      width: 110%;
+      width: 105%;
       height: 100%;
-      background-color: blueviolet;
       overflow: hidden;
       overflow-y: scroll;
       overflow-x: hidden;
       .title-box {
+        position: relative;
+        top: -1px;
         height: 26px;
         line-height: 26px;
         font-size: 12px;
@@ -60,10 +74,70 @@ export default {
         padding-left: 18px;
       }
       .ul-inner-box {
-        background-color: #d9dde1;
+        position: relative;
+        width: 92%;
+        background-color: #ffffff;
+        padding: 0 20px;
+        list-style: none;
         .food-box {
+          width: 100%;
           height: 96px;
-          background-color: #fcfccf;
+          background-color: #ffffff;
+          border-bottom: 1px solid #d9dde1;
+          display: table;
+          padding: 10px 0;
+          .left-box {
+            display: table-cell;
+            vertical-align: top;
+            .food-img {
+              display: inline-block;
+              width: 60px;
+              height: 60px;
+            }
+            .content-box {
+              display: inline-block;
+              height: 80px;
+              .food-name-text {
+                color: #071129;
+                font-size: 14px;
+                font-size: 700;
+              }
+              .food-decs-text {
+                color: #93999f;
+                font-size: 10px;
+              }
+              .sell-info-box {
+                .sell-info-count-text {
+                  font-size: 10px;
+                  color: #93999f;
+                }
+              }
+              .price-box {
+                .price-text {
+                  font-size: 14px;
+                  color: #f01414;
+                }
+                .old-price-text {
+                  font-size: 14px;
+                  text-decoration: line-through;
+                  color: rgb(147, 153, 159);
+                }
+              }
+            }
+          }
+          .right-box {
+            display: table-cell;
+            width: 100px;
+            height: 100%;
+            // background-color: yellowgreen;
+            vertical-align: bottom;
+            text-align: right;
+            .add-icon {
+              &::before {
+                content: "+";
+              }
+            }
+          }
         }
       }
     }

@@ -6,17 +6,19 @@
       :dataList="goodsData.goods"
       @itemClick="menuListClick"
     ></menu-list>
-    <div class="right-list"></div>
+    <food-list class="right-list" :dataList="goodsData.goods"></food-list>
   </div>
 </template>
 
 <script>
 import menuList from './components/MenuList/MenuList'
+import foodList from './components/FoodList/FoodList'
 import axios from 'axios'
 export default {
   name: 'goods',
   components: {
-    menuList
+    menuList,
+    foodList
   },
   data () {
     return {
@@ -40,7 +42,6 @@ export default {
 <style lang="less" scoped>
 .goods-wrapper {
   position: absolute;
-  background-color: red;
   width: 100%;
   height: 450px;
   display: table;
@@ -52,7 +53,6 @@ export default {
 
   .right-list {
     display: table-cell;
-    background-color: aqua;
   }
 }
 </style>
