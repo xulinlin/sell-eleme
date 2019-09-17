@@ -1,16 +1,40 @@
 <template>
   <div class="goods-wrapper">
-    <menu-list class="menu-list"></menu-list>
-    <div class="right-list"></div>
+    <menu-list
+      class="menu-list"
+      :defaultIndex="0"
+      :dataList="goodsData.goods"
+      @itemClick="menuListClick"
+    ></menu-list>
+    <food-list class="right-list" :dataList="goodsData.goods"></food-list>
   </div>
 </template>
 
 <script>
 import menuList from './components/MenuList/MenuList'
+import foodList from './components/FoodList/FoodList'
+import axios from 'axios'
 export default {
   name: 'goods',
   components: {
-    menuList
+    menuList,
+    foodList
+  },
+  data () {
+    return {
+      goodsData: []
+    }
+  },
+  created () {
+    let self = this
+    axios.get('/static/data.json').then((res) => {
+      self.goodsData = res.data
+    })
+  },
+  methods: {
+    menuListClick (params) {
+      console.log('外部接收到点击------', params)
+    }
   }
 }
 </script>
@@ -18,25 +42,17 @@ export default {
 <style lang="less" scoped>
 .goods-wrapper {
   position: absolute;
-  background-color: red;
   width: 100%;
   height: 450px;
-
+  display: table;
   .menu-list {
-    position: absolute;
-    width: 60px;
-    bottom: 0;
-    top: 0;
-    left: 0;
+    width: 100px;
+    height: 100%;
+    display: table-cell;
   }
 
   .right-list {
-    position: absolute;
-    background-color: aqua;
-    bottom: 0;
-    top: 0;
-    left: 60px;
-    right: 0;
+    display: table-cell;
   }
 }
 </style>
