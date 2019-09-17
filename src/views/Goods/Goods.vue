@@ -45,7 +45,7 @@ export default {
   height: 450px;
   display: table;
   .menu-list {
-    width: 80px;
+    width: 100px;
     height: 100%;
     display: table-cell;
   }

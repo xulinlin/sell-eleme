@@ -59,7 +59,7 @@ export default {
     overflow: hidden;
     .ul-box {
       width: 115%;
-      // height: 100%;
+      height: 450px;
       list-style: none;
       background-color: #f3f5f7;
       overflow-y: scroll;
