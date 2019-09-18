@@ -1,24 +1,24 @@
 <template>
   <div class="rating-header-wrapper">
     <div class="left-box">
-      <div class="rating-num-text">4.2</div>
+      <div class="rating-num-text">{{dataInfo.score}}</div>
       <div class="rating-desc1-text">综合商家评分</div>
-      <div class="rating-desc1-text">高于周边商家69.2%</div>
+      <div class="rating-desc1-text">高于周边商家{{dataInfo.rankRate}}%</div>
     </div>
     <div class="right-box">
       <div class="service-box">
-        <span class="service-desc-text">服务态度</span>
-        <stars class="star-box" :num="4.5"></stars>
-        <span class="service-desc-text service-num-text">4.5分</span>
+        <span class="service-desc-text">商品评分</span>
+        <stars class="star-box" :num="dataInfo.foodScore"></stars>
+        <span class="service-desc-text service-num-text">{{dataInfo.foodScore}}分</span>
       </div>
       <div class="service-box">
         <span class="service-desc-text">服务态度</span>
-        <stars class="star-box" :num="4.5"></stars>
-        <span class="service-desc-text service-num-text">4.5分</span>
+        <stars class="star-box" :num="dataInfo.serviceScore"></stars>
+        <span class="service-desc-text service-num-text">{{dataInfo.serviceScore}}分</span>
       </div>
       <div class="service-box">
         <span class="service-desc-text">送达时间</span>
-        <span class="service-desc-text time-text">38分钟</span>
+        <span class="service-desc-text time-text">{{dataInfo.deliveryTime}}分钟</span>
       </div>
     </div>
   </div>
@@ -30,6 +30,12 @@ export default {
   name: 'RatingHeader',
   components: {
     Stars
+  },
+  props: {
+    dataInfo: {
+      type: Object,
+      default: null
+    }
   }
 }
 </script>
@@ -68,13 +74,14 @@ export default {
     left: 20px;
     .service-box {
       .star-box {
-        width: 90px;
+        width: 80px;
+        height: 14px;
       }
       .service-desc-text {
         display: inline-block;
         font-size: 12px;
         color: #07111b;
-        line-height: 20px;
+        line-height: 16px;
       }
       .service-num-text {
         color: #f90;

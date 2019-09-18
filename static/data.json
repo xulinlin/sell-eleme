@@ -98,7 +98,7 @@
             {
               "username": "3******c",
               "rateTime": 1469281964000,
-              "rateType": 0,
+              "rateType": 2,
               "text": "",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
@@ -1131,7 +1131,7 @@
       "deliveryTime": 30,
       "score": 5,
       "rateType": 0,
-      "text": "不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.",
+      "text": "不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.超级好吃哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": [
         "南瓜粥",
@@ -1168,7 +1168,7 @@
       "rateTime": 1469261864000,
       "deliveryTime": 20,
       "score": 5,
-      "rateType": 0,
+      "rateType": 2,
       "text": "良心店铺",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
@@ -1178,7 +1178,7 @@
       "rateTime": 1469251264000,
       "deliveryTime": 10,
       "score": 4,
-      "rateType": 0,
+      "rateType": 2,
       "text": "",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []

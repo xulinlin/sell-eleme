@@ -1,6 +1,6 @@
 <template>
   <div class="stars-wrapper">
-    <div v-for="(item,index) in starAry" :key="index">
+    <div class="star-img-box" v-for="(item,index) in starAry" :key="index">
       <img class="star-img" :src="getStar(item)" />
     </div>
   </div>
@@ -39,9 +39,12 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  .star-img {
-    width: 16px;
-    height: 16px;
+  .star-img-box {
+    height: 100%;
+    .star-img {
+      height: 100%;
+      width: auto;
+    }
   }
 }
 </style>
