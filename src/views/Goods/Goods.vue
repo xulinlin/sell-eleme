@@ -14,6 +14,7 @@
 import menuList from './components/MenuList/MenuList'
 import foodList from './components/FoodList/FoodList'
 import axios from 'axios'
+
 export default {
   name: 'goods',
   components: {

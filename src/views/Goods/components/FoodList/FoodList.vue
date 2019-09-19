@@ -3,7 +3,7 @@
     <div class="ul-out-wrapper">
       <ul class="ul-out-box">
         <li v-for="(item, index) in dataList" :key="index">
-          <div class="title-box">{{item.name}}</div>
+          <h1 class="title-box">{{item.name}}</h1>
           <ul class="ul-inner-box">
             <li v-for="(food, index) in item.foods" :key="index">
               <div class="food-box">
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 
 export default {
   name: 'FoodList',
@@ -45,6 +46,26 @@ export default {
         return []
       }
     }
+  },
+  created () {
+    $(function ($) {
+      let y = $('h1.title-box')
+      console.log('急急急--', y)
+    })
+
+    // $('.ul-out-box').addEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll () {
+      //     let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
+      // document.body.scrollTop
+      let t = $('.title-box')
+
+      console.log('监听滚动---', t)
+    }
+  },
+  destroyed () {
+    $('.ul-out-box').removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
