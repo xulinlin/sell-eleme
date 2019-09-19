@@ -1,0 +1,59 @@
+@font-face
+{
+font-family: 'sell-font';
+src: 
+url('sell-icon.ttf'),
+     url('sell-icon.svg') format('svg'),
+     url('sell-icon.woff') format("woff"),
+     url('sell-icon.eot');
+}
+
+.iconfont2 {
+    font-family: 'sell-font' !important;
+    font-size: 18px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: "0.2px";
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .add_circle:before {
+    content: "\1f4";
+  }
+
+  .arrow_lift:before {
+    content: "\e900";
+  }
+
+  .check_circle:before {
+    content: "\e901";
+  }
+
+  .close:before {
+    content: "\e902";
+  }
+
+  .favorite:before {
+    content: "\e903";
+  }
+
+  .keyboard_arrow_right:before {
+    content: "\e904";
+  }
+
+  .remove_circle_outline:before {
+    content: "\e905";
+  }
+
+  .shopping_cart:before {
+    content: "\e906";
+  }
+
+  .thumb_down:before {
+    content: "\e907";
+  }
+
+  .thumb_up:before {
+    content: "\e908";
+  }
+

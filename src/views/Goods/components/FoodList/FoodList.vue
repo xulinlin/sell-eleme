@@ -23,7 +23,7 @@
                   </div>
                 </div>
                 <div class="right-box">
-                  <i class="add-icon"></i>
+                  <i class="i-icon iconfont2 add_circle"></i>
                 </div>
               </div>
             </li>
@@ -127,15 +127,12 @@ export default {
           }
           .right-box {
             display: table-cell;
-            width: 100px;
-            height: 100%;
-            // background-color: yellowgreen;
             vertical-align: bottom;
-            text-align: right;
-            .add-icon {
-              &::before {
-                content: "+";
-              }
+            text-align: left;
+            width: 20px;
+            .i-icon {
+              font-size: 24px;
+              color: rgb(0, 162, 255);
             }
           }
         }

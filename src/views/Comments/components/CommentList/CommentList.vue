@@ -31,7 +31,10 @@
               <img class="user-img" :src="item.avatar" />
             </div>
             <div class="comment-box">
-              <div class="user-name-text">{{item.username}}</div>
+              <div class="user-info-box">
+                <div class="user-name-text">{{item.username}}</div>
+                <div class="left-time-box">2016-03-05 09:30</div>
+              </div>
               <div class="star-num-box">
                 <stars class="star-box" :num="item.score"></stars>
                 <div class="time-text">30分钟送达</div>
@@ -45,7 +48,6 @@
                 >{{dish}}</span>
               </div>
             </div>
-            <div class="left-time-box">2016-03-05 09:30</div>
           </div>
         </li>
       </ul>
@@ -174,10 +176,15 @@ export default {
           padding-left: 10px;
           display: table-cell;
           width: auto;
-          .user-name-text {
-            color: #07111b;
-            font-size: 12px;
-            line-height: 14px;
+          .user-info-box {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            .user-name-text {
+              color: #07111b;
+              font-size: 12px;
+              line-height: 14px;
+            }
           }
 
           .star-num-box {
@@ -210,6 +217,7 @@ export default {
               font-size: 10px;
               padding: 3px;
               margin-right: 10px;
+              margin-bottom: 3px;
             }
           }
         }
