@@ -133,10 +133,6 @@ export default {
             .i-icon {
               font-size: 24px;
               color: rgb(0, 162, 255);
-              // font-size: 14px;
-              // &::before {
-              //   content: "/xe902";
-              // }
             }
           }
         }
