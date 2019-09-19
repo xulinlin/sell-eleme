@@ -22,7 +22,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="right-box">+</div>
+                <div class="right-box">
+                  <i class="i-icon iconfont icondianzan"></i>
+                </div>
               </div>
             </li>
           </ul>
@@ -128,6 +130,9 @@ export default {
             vertical-align: bottom;
             text-align: left;
             width: 20px;
+            .i-icon {
+              font-size: 14px;
+            }
           }
         }
       }
