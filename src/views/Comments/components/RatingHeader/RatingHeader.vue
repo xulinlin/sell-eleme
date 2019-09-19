@@ -48,7 +48,7 @@ export default {
   padding: 24px 0;
 
   .left-box {
-    width: 200px;
+    padding: 0 30px;
     height: 100%;
     display: inline-flex;
     flex-direction: column;

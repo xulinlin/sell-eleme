@@ -22,9 +22,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="right-box">
-                  <i class="add-icon"></i>
-                </div>
+                <div class="right-box">+</div>
               </div>
             </li>
           </ul>
@@ -127,16 +125,9 @@ export default {
           }
           .right-box {
             display: table-cell;
-            width: 100px;
-            height: 100%;
-            // background-color: yellowgreen;
             vertical-align: bottom;
-            text-align: right;
-            .add-icon {
-              &::before {
-                content: "+";
-              }
-            }
+            text-align: left;
+            width: 20px;
           }
         }
       }

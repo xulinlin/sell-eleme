@@ -13,8 +13,12 @@ export default {
 
 <style lang="less" scoped>
 .seller-wrapper {
-  background-color: #fcfccf;
-  width: 100%;
-  height: 450px;
+  position: absolute;
+  top: 180px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 </style>
