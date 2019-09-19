@@ -23,7 +23,7 @@
                   </div>
                 </div>
                 <div class="right-box">
-                  <i class="i-icon iconfont icondianzan"></i>
+                  <i class="i-icon iconfont2 add_circle"></i>
                 </div>
               </div>
             </li>
@@ -131,7 +131,12 @@ export default {
             text-align: left;
             width: 20px;
             .i-icon {
-              font-size: 14px;
+              font-size: 24px;
+              color: rgb(0, 162, 255);
+              // font-size: 14px;
+              // &::before {
+              //   content: "/xe902";
+              // }
             }
           }
         }

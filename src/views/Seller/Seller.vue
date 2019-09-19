@@ -1,5 +1,7 @@
 <template>
-  <div class="seller-wrapper"></div>
+  <div class="seller-wrapper">
+    <div class="top-box"></div>
+  </div>
 </template>
 
 <script>
@@ -20,5 +22,8 @@ export default {
   bottom: 0;
   overflow: hidden;
   overflow-y: scroll;
+
+  .top-box {
+  }
 }
 </style>
