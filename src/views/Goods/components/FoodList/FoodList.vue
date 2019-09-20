@@ -3,7 +3,7 @@
     <div class="ul-out-wrapper">
       <ul class="ul-out-box">
         <li v-for="(item, index) in dataList" :key="index">
-          <div class="title-box">{{item.name}}</div>
+          <h1 class="title-box">{{item.name}}</h1>
           <ul class="ul-inner-box">
             <li v-for="(food, index) in item.foods" :key="index">
               <div class="food-box">
@@ -35,16 +35,114 @@
 </template>
 
 <script>
+import $ from 'jquery'
 
 export default {
   name: 'FoodList',
   props: {
+    groupIndex: {
+      type: Number,
+      default: 0
+    },
     dataList: {
       type: Array,
       default () {
         return []
       }
     }
+  },
+  data () {
+    return {
+      defaultTop: 0,
+      curIndex: 0,
+      topAry: [],
+      isScroll: true,
+      curTop: 0
+    }
+  },
+  watch: {
+    groupIndex (newV, oldV) {
+      this.scrollToIndex(newV)
+    },
+    curIndex (newV, oldV) {
+      this.$emit('groupChanged', newV)
+    }
+  },
+
+  created () {
+    this.init()
+  },
+
+  methods: {
+    init () {
+      let self = this
+      $(function ($) {
+        self.getFirstTop()
+        self.addListenScorll()
+      })
+    },
+    getFirstTop () {
+      let self = this
+      self.curTop = $('.ul-out-box').scrollTop()
+      $('h1.title-box:first').each(function () {
+        self.defaultTop = $(this).offset().top
+      })
+      $('h1.title-box').each(function () {
+        self.topAry.push($(this).position().top)
+      })
+      // console.log('当前偏移量', self.curTop, '各个偏移量---', self.topAry)
+    },
+
+    addListenScorll () {
+      let self = this
+      let timer = null
+      $('.ul-out-box').scroll(function () {
+        if (!self.isScroll) { return }
+        clearTimeout(timer)
+        timer = setTimeout(function () {
+          if (self.isScrollEnd()) {
+            if (self.curTop >= self.topAry[self.topAry.length - 1]) {
+              self.curIndex = self.topAry.length - 1
+              return
+            }
+            $.each(self.topAry, function (index, item) {
+              // console.log('当前top------', self.curTop)
+              if (item - 20 > self.curTop) {
+                // console.log('记录值---', item, '当前index--', index)
+                self.curIndex = index - 1
+                return false
+              }
+            })
+          }
+        }, 300)
+        self.curTop = $(this).scrollTop()
+      })
+    },
+
+    scrollToIndex (index) {
+      let self = this
+      if (self.curIndex === index) {
+        return
+      }
+      self.curIndex = index
+      self.isScroll = false
+      let moveY = self.topAry[index]
+      $('.ul-out-box').animate({
+        'scrollTop': moveY
+      }, 300, function () {
+        console.log('------', self.isScroll)
+        self.isScroll = true
+      })
+    },
+
+    isScrollEnd () {
+      let self = this
+      let h = $('.ul-out-box').scrollTop()
+      return h === self.curTop
+    }
+  },
+  destroyed () {
+
   }
 }
 </script>
