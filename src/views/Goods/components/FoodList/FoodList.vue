@@ -47,25 +47,55 @@ export default {
       }
     }
   },
-  created () {
-    $(function ($) {
-      let y = $('h1.title-box')
-      console.log('急急急--', y)
-    })
-
-    // $('.ul-out-box').addEventListener('scroll', this.handleScroll)
+  data () {
+    return {
+      defaultTop: 0,
+      curIndex: 0
+    }
   },
-  methods: {
-    handleScroll () {
-      //     let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
-      // document.body.scrollTop
-      let t = $('.title-box')
+  watch: {
+    curIndex (newV, oldV) {
+      this.$emit('groupChanged', newV)
+    }
+  },
 
-      console.log('监听滚动---', t)
+  created () {
+    this.init()
+  },
+
+  methods: {
+    init () {
+      let self = this
+      $(function ($) {
+        self.getFirstTop()
+        self.addListenScorll()
+      })
+    },
+    getFirstTop () {
+      let self = this
+      $('h1.title-box:first').each(function () {
+        self.defaultTop = $(this).offset().top
+      })
+    },
+
+    addListenScorll () {
+      let self = this
+      let count = 0
+      $('.ul-out-box').scroll(function () {
+        count = 0
+        $('h1.title-box').each(function () {
+          if ($(this).offset().top < self.defaultTop) {
+            count++
+            if (count - 1 !== self.curIndex) {
+              self.curIndex = count - 1
+            }
+          }
+        })
+      })
     }
   },
   destroyed () {
-    $('.ul-out-box').removeEventListener('scroll', this.handleScroll)
+
   }
 }
 </script>

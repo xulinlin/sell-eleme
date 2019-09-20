@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 
 export default {
   name: 'MenuList',
@@ -26,26 +27,42 @@ export default {
         return ['酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口']
       }
     },
-    defaultIndex: {
+    selectedIndex: {
       type: Number,
-      default: 2
+      default: 0
     }
   },
   data () {
     return {
       curIndex: 0,
-      iconMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+      iconMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
+      listHeight: 0
+    }
+  },
+  watch: {
+    selectedIndex (newV, oldV) {
+      this.curIndex = newV
+    },
+    curIndex (newV, oldV) {
+      this.changeScrollTop()
     }
   },
   created () {
-    this.curIndex = this.defaultIndex
-  },
-  components: {
+    this.curIndex = this.selectedIndex
   },
   methods: {
     itemClick (index) {
       this.curIndex = index
       this.$emit('itemClick', index)
+    },
+
+    changeScrollTop () {
+      let moveY = (this.curIndex - 3) * 60
+      setTimeout(function () {
+        $('.ul-box').animate({
+          scrollTop: moveY
+        }, 300)
+      }, 200)
     }
   }
 }
@@ -54,7 +71,6 @@ export default {
 <style lang="less" scoped>
 .menu-list-wrapper {
   width: 100%;
-
   .out-box {
     overflow: hidden;
     .ul-box {

@@ -2,11 +2,11 @@
   <div class="goods-wrapper">
     <menu-list
       class="menu-list"
-      :defaultIndex="0"
+      :selectedIndex="curIndex"
       :dataList="goodsData.goods"
       @itemClick="menuListClick"
     ></menu-list>
-    <food-list class="right-list" :dataList="goodsData.goods"></food-list>
+    <food-list class="right-list" :dataList="goodsData.goods" @groupChanged="foodGroupChanged"></food-list>
   </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
   },
   data () {
     return {
-      goodsData: []
+      goodsData: [],
+      curIndex: 0
     }
   },
   created () {
@@ -35,6 +36,9 @@ export default {
   methods: {
     menuListClick (params) {
       console.log('外部接收到点击------', params)
+    },
+    foodGroupChanged (params) {
+      this.curIndex = params
     }
   }
 }
@@ -43,8 +47,11 @@ export default {
 <style lang="less" scoped>
 .goods-wrapper {
   position: absolute;
+  top: 176px;
+  left: 0;
+  right: 0;
   width: 100%;
-  height: 450px;
+  overflow: hidden;
   display: table;
   .menu-list {
     width: 100px;
