@@ -58,7 +58,9 @@ export default {
 
     changeScrollTop () {
       let moveY = (this.curIndex - 3) * 60
-      setTimeout(function () {
+      let timer = null
+      clearTimeout(timer)
+      timer = setTimeout(function () {
         $('.ul-box').animate({
           scrollTop: moveY
         }, 300)

@@ -6,7 +6,12 @@
       :dataList="goodsData.goods"
       @itemClick="menuListClick"
     ></menu-list>
-    <food-list class="right-list" :dataList="goodsData.goods" @groupChanged="foodGroupChanged"></food-list>
+    <food-list
+      class="right-list"
+      :groupIndex="curIndex"
+      :dataList="goodsData.goods"
+      @groupChanged="foodGroupChanged"
+    ></food-list>
   </div>
 </template>
 
@@ -36,6 +41,7 @@ export default {
   methods: {
     menuListClick (params) {
       console.log('外部接收到点击------', params)
+      this.curIndex = params
     },
     foodGroupChanged (params) {
       this.curIndex = params
