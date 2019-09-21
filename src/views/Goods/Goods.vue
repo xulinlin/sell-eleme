@@ -16,38 +16,38 @@
 </template>
 
 <script>
-import menuList from './components/MenuList/MenuList'
-import foodList from './components/FoodList/FoodList'
-import axios from 'axios'
+import menuList from "./components/MenuList/MenuList";
+import foodList from "./components/FoodList/FoodList";
+import axios from "axios";
 
 export default {
-  name: 'goods',
+  name: "goods",
   components: {
     menuList,
     foodList
   },
-  data () {
+  data() {
     return {
       goodsData: [],
       curIndex: 0
-    }
+    };
   },
-  created () {
-    let self = this
-    axios.get('/static/data.json').then((res) => {
-      self.goodsData = res.data
-    })
+  created() {
+    let self = this;
+    axios.get("/static/data.json").then(res => {
+      self.goodsData = res.data;
+    });
   },
   methods: {
-    menuListClick (params) {
-      console.log('外部接收到点击------', params)
-      this.curIndex = params
+    menuListClick(params) {
+      console.log("外部接收到点击------", params);
+      this.curIndex = params;
     },
-    foodGroupChanged (params) {
-      this.curIndex = params
+    foodGroupChanged(params) {
+      this.curIndex = params;
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -16,15 +16,28 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 
 export default {
-  name: 'MenuList',
+  name: "MenuList",
   props: {
     dataList: {
       type: Array,
-      default () {
-        return ['酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口']
+      default() {
+        return [
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口",
+          "酸甜爽口"
+        ];
       }
     },
     selectedIndex: {
@@ -32,42 +45,45 @@ export default {
       default: 0
     }
   },
-  data () {
+  data() {
     return {
       curIndex: 0,
-      iconMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
+      iconMap: ["decrease", "discount", "special", "invoice", "guarantee"],
       listHeight: 0
-    }
+    };
   },
   watch: {
-    selectedIndex (newV, oldV) {
-      this.curIndex = newV
+    selectedIndex(newV, oldV) {
+      this.curIndex = newV;
     },
-    curIndex (newV, oldV) {
-      this.changeScrollTop()
+    curIndex(newV, oldV) {
+      this.changeScrollTop();
     }
   },
-  created () {
-    this.curIndex = this.selectedIndex
+  created() {
+    this.curIndex = this.selectedIndex;
   },
   methods: {
-    itemClick (index) {
-      this.curIndex = index
-      this.$emit('itemClick', index)
+    itemClick(index) {
+      this.curIndex = index;
+      this.$emit("itemClick", index);
     },
 
-    changeScrollTop () {
-      let moveY = (this.curIndex - 3) * 60
-      let timer = null
-      clearTimeout(timer)
-      timer = setTimeout(function () {
-        $('.ul-box').animate({
-          scrollTop: moveY
-        }, 300)
-      }, 200)
+    changeScrollTop() {
+      let moveY = (this.curIndex - 3) * 60;
+      let timer = null;
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        $(".ul-box").animate(
+          {
+            scrollTop: moveY
+          },
+          300
+        );
+      }, 200);
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
