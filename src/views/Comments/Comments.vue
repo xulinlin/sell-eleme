@@ -24,7 +24,7 @@ export default {
   },
   created () {
     let self = this
-    axios.get('/static/data.json').then((res) => {
+    axios.get('/static/data.json').then(res => {
       self.dataList = res.data
     })
   }

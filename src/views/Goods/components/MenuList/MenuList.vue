@@ -24,7 +24,20 @@ export default {
     dataList: {
       type: Array,
       default () {
-        return ['酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口', '酸甜爽口']
+        return [
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口',
+          '酸甜爽口'
+        ]
       }
     },
     selectedIndex: {
@@ -61,9 +74,12 @@ export default {
       let timer = null
       clearTimeout(timer)
       timer = setTimeout(function () {
-        $('.ul-box').animate({
-          scrollTop: moveY
-        }, 300)
+        $('.ul-box').animate(
+          {
+            scrollTop: moveY
+          },
+          300
+        )
       }, 200)
     }
   }
@@ -77,7 +93,7 @@ export default {
     overflow: hidden;
     .ul-box {
       width: 115%;
-      height: 450px;
+      height: 100%;
       list-style: none;
       background-color: #f3f5f7;
       overflow-y: scroll;

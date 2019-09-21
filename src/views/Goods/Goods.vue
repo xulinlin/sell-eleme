@@ -34,7 +34,7 @@ export default {
   },
   created () {
     let self = this
-    axios.get('/static/data.json').then((res) => {
+    axios.get('/static/data.json').then(res => {
       self.goodsData = res.data
     })
   },
@@ -59,9 +59,11 @@ export default {
   width: 100%;
   overflow: hidden;
   display: table;
+  background-color: antiquewhite;
   .menu-list {
     width: 100px;
     height: 100%;
+    max-height: 450px;
     display: table-cell;
   }
 

@@ -97,7 +97,9 @@ export default {
       let self = this
       let timer = null
       $('.ul-out-box').scroll(function () {
-        if (!self.isScroll) { return }
+        if (!self.isScroll) {
+          return
+        }
         clearTimeout(timer)
         timer = setTimeout(function () {
           if (self.isScrollEnd()) {
@@ -127,12 +129,16 @@ export default {
       self.curIndex = index
       self.isScroll = false
       let moveY = self.topAry[index]
-      $('.ul-out-box').animate({
-        'scrollTop': moveY
-      }, 300, function () {
-        console.log('------', self.isScroll)
-        self.isScroll = true
-      })
+      $('.ul-out-box').animate(
+        {
+          scrollTop: moveY
+        },
+        300,
+        function () {
+          console.log('------', self.isScroll)
+          self.isScroll = true
+        }
+      )
     },
 
     isScrollEnd () {
@@ -141,22 +147,19 @@ export default {
       return h === self.curTop
     }
   },
-  destroyed () {
-
-  }
+  destroyed () {}
 }
 </script>
 
 <style lang="less" scoped>
 .food-list-wrapper {
   .ul-out-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    height: 450px;
     .ul-out-box {
-      width: 105%;
-      height: 100%;
+      position: absolute;
+      left: 100px;
+      right: 0;
+      top: 0;
+      bottom: 0;
       overflow: hidden;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -173,7 +176,6 @@ export default {
       }
       .ul-inner-box {
         position: relative;
-        width: 92%;
         background-color: #ffffff;
         padding: 0 20px;
         list-style: none;
