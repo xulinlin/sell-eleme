@@ -59,6 +59,7 @@ export default {
   width: 100%;
   overflow: hidden;
   display: table;
+  background-color: antiquewhite;
   .menu-list {
     width: 100px;
     height: 100%;
