@@ -90,14 +90,13 @@ export default {
       $('h1.title-box').each(function () {
         self.topAry.push($(this).position().top)
       })
-      console.log('当前偏移量', self.curTop, '各个偏移量---', self.topAry)
+      // console.log('当前偏移量', self.curTop, '各个偏移量---', self.topAry)
     },
 
     addListenScorll () {
       let self = this
       let timer = null
       $('.ul-out-box').scroll(function () {
-        debugger
         if (!self.isScroll) {
           return
         }
@@ -109,9 +108,9 @@ export default {
               return
             }
             $.each(self.topAry, function (index, item) {
-              console.log('当前top------', self.curTop)
+              // console.log('当前top------', self.curTop)
               if (item - 20 > self.curTop) {
-                console.log('记录值---', item, '当前index--', index)
+                // console.log('记录值---', item, '当前index--', index)
                 self.curIndex = index - 1
                 return false
               }
@@ -157,11 +156,10 @@ export default {
   .ul-out-wrapper {
     .ul-out-box {
       position: absolute;
-      width: 100%;
-      overflow: hidden;
-      height: 100%;
-      width: 105%;
-      height: 100%;
+      left: 100px;
+      right: 0;
+      top: 0;
+      bottom: 0;
       overflow: hidden;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -178,7 +176,6 @@ export default {
       }
       .ul-inner-box {
         position: relative;
-        width: 92%;
         background-color: #ffffff;
         padding: 0 20px;
         list-style: none;

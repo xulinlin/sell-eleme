@@ -63,6 +63,7 @@ export default {
   .menu-list {
     width: 100px;
     height: 100%;
+    max-height: 450px;
     display: table-cell;
   }
 
