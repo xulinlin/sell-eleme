@@ -35,10 +35,10 @@
 </template>
 
 <script>
-import $ from "jquery";
+import $ from 'jquery'
 
 export default {
-  name: "FoodList",
+  name: 'FoodList',
   props: {
     groupIndex: {
       type: Number,
@@ -46,109 +46,109 @@ export default {
     },
     dataList: {
       type: Array,
-      default() {
-        return [];
+      default () {
+        return []
       }
     }
   },
-  data() {
+  data () {
     return {
       defaultTop: 0,
       curIndex: 0,
       topAry: [],
       isScroll: true,
       curTop: 0
-    };
+    }
   },
   watch: {
-    groupIndex(newV, oldV) {
-      this.scrollToIndex(newV);
+    groupIndex (newV, oldV) {
+      this.scrollToIndex(newV)
     },
-    curIndex(newV, oldV) {
-      this.$emit("groupChanged", newV);
+    curIndex (newV, oldV) {
+      this.$emit('groupChanged', newV)
     }
   },
 
-  created() {
-    this.init();
+  created () {
+    this.init()
   },
 
   methods: {
-    init() {
-      let self = this;
-      $(function($) {
-        self.getFirstTop();
-        self.addListenScorll();
-      });
+    init () {
+      let self = this
+      $(function ($) {
+        self.getFirstTop()
+        self.addListenScorll()
+      })
     },
-    getFirstTop() {
-      let self = this;
-      self.curTop = $(".ul-out-box").scrollTop();
-      $("h1.title-box:first").each(function() {
-        self.defaultTop = $(this).offset().top;
-      });
-      $("h1.title-box").each(function() {
-        self.topAry.push($(this).position().top);
-      });
+    getFirstTop () {
+      let self = this
+      self.curTop = $('.ul-out-box').scrollTop()
+      $('h1.title-box:first').each(function () {
+        self.defaultTop = $(this).offset().top
+      })
+      $('h1.title-box').each(function () {
+        self.topAry.push($(this).position().top)
+      })
       // console.log('当前偏移量', self.curTop, '各个偏移量---', self.topAry)
     },
 
-    addListenScorll() {
-      let self = this;
-      let timer = null;
-      $(".ul-out-box").scroll(function() {
+    addListenScorll () {
+      let self = this
+      let timer = null
+      $('.ul-out-box').scroll(function () {
         if (!self.isScroll) {
-          return;
+          return
         }
-        clearTimeout(timer);
-        timer = setTimeout(function() {
+        clearTimeout(timer)
+        timer = setTimeout(function () {
           if (self.isScrollEnd()) {
             if (self.curTop >= self.topAry[self.topAry.length - 1]) {
-              self.curIndex = self.topAry.length - 1;
-              return;
+              self.curIndex = self.topAry.length - 1
+              return
             }
-            $.each(self.topAry, function(index, item) {
+            $.each(self.topAry, function (index, item) {
               // console.log('当前top------', self.curTop)
               if (item - 20 > self.curTop) {
                 // console.log('记录值---', item, '当前index--', index)
-                self.curIndex = index - 1;
-                return false;
+                self.curIndex = index - 1
+                return false
               }
-            });
+            })
           }
-        }, 300);
-        self.curTop = $(this).scrollTop();
-      });
+        }, 300)
+        self.curTop = $(this).scrollTop()
+      })
     },
 
-    scrollToIndex(index) {
-      let self = this;
+    scrollToIndex (index) {
+      let self = this
       if (self.curIndex === index) {
-        return;
+        return
       }
-      self.curIndex = index;
-      self.isScroll = false;
-      let moveY = self.topAry[index];
-      $(".ul-out-box").animate(
+      self.curIndex = index
+      self.isScroll = false
+      let moveY = self.topAry[index]
+      $('.ul-out-box').animate(
         {
           scrollTop: moveY
         },
         300,
-        function() {
-          console.log("------", self.isScroll);
-          self.isScroll = true;
+        function () {
+          console.log('------', self.isScroll)
+          self.isScroll = true
         }
-      );
+      )
     },
 
-    isScrollEnd() {
-      let self = this;
-      let h = $(".ul-out-box").scrollTop();
-      return h === self.curTop;
+    isScrollEnd () {
+      let self = this
+      let h = $('.ul-out-box').scrollTop()
+      return h === self.curTop
     }
   },
-  destroyed() {}
-};
+  destroyed () {}
+}
 </script>
 
 <style lang="less" scoped>
