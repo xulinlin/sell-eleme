@@ -2,10 +2,10 @@
   <div class="food-list-wrapper">
     <div class="ul-out-wrapper">
       <ul class="ul-out-box">
-        <li v-for="(item, index) in dataList" :key="index">
+        <li v-for="(item, index1) in foodList" :key="index1">
           <h1 class="title-box">{{item.name}}</h1>
           <ul class="ul-inner-box">
-            <li v-for="(food, index) in item.foods" :key="index">
+            <li v-for="(food, index2) in item.foods" :key="index2">
               <div class="food-box">
                 <div class="left-box">
                   <img class="food-img" :src="food.icon" />
@@ -23,7 +23,22 @@
                   </div>
                 </div>
                 <div class="right-box">
-                  <i class="i-icon iconfont2 add_circle"></i>
+                  <div
+                    class="reduce-box"
+                    :class="food.count>0 ? 'reduce-box-fade-in' : ''"
+                    v-show="food.count>0"
+                    @click.stop.prevent="reduceFood(food)"
+                  >
+                    <i class="i-icon iconfont2 remove_circle_outline"></i>
+                  </div>
+                  <div
+                    class="food-count"
+                    :class="food.count>0 ? 'food-count-fade-in' : ''"
+                    v-show="true"
+                  >{{food.count}}</div>
+                  <div @click.stop.prevent="addFood(food)">
+                    <i class="i-icon iconfont2 add_circle"></i>
+                  </div>
                 </div>
               </div>
             </li>
@@ -36,7 +51,6 @@
 
 <script>
 import $ from 'jquery'
-
 export default {
   name: 'FoodList',
   props: {
@@ -57,10 +71,15 @@ export default {
       curIndex: 0,
       topAry: [],
       isScroll: true,
-      curTop: 0
+      curTop: 0,
+      foodCount: 0,
+      foodList: []
     }
   },
   watch: {
+    dataList (newV, oldV) {
+      this.foodList = this.dataList
+    },
     groupIndex (newV, oldV) {
       this.scrollToIndex(newV)
     },
@@ -145,6 +164,14 @@ export default {
       let self = this
       let h = $('.ul-out-box').scrollTop()
       return h === self.curTop
+    },
+
+    addFood (food) {
+      food.count++
+    },
+
+    reduceFood (food) {
+      food.count--
     }
   },
   destroyed () {}
@@ -184,15 +211,16 @@ export default {
           height: 96px;
           background-color: #ffffff;
           border-bottom: 1px solid #d9dde1;
-          display: table;
+          display: flex;
+          justify-content: space-between;
           padding: 10px 0;
           .left-box {
-            display: table-cell;
-            vertical-align: top;
+            display: flex;
             .food-img {
               display: inline-block;
               width: 60px;
               height: 60px;
+              margin-right: 8px;
             }
             .content-box {
               display: inline-block;
@@ -226,10 +254,38 @@ export default {
             }
           }
           .right-box {
-            display: table-cell;
-            vertical-align: bottom;
-            text-align: left;
-            width: 20px;
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+            .reduce-box {
+              position: relative;
+              left: 40px;
+              visibility: hidden;
+              opacity: 0;
+              display: inline-block;
+            }
+
+            .reduce-box-fade-in {
+              position: relative;
+              visibility: visible;
+              .reduce-box-fadeIn(0.5s);
+            }
+
+            .food-count {
+              position: relative;
+              visibility: hidden;
+              font-size: 14px;
+              margin: 0 4px;
+              left: 15px;
+              opacity: 0;
+            }
+
+            .food-count-fade-in {
+              visibility: visible;
+              .food-count-fadeIn(0.5s, 20px, 0px);
+            }
+
             .i-icon {
               font-size: 24px;
               color: rgb(0, 162, 255);
@@ -239,5 +295,41 @@ export default {
       }
     }
   }
+}
+
+.food-count-fadeIn(@time:1s,@from:0px,@to:0px) {
+  @keyframes food-count-fadeIn {
+    0% {
+      left: @from;
+      opacity: 0;
+    }
+    100% {
+      left: @to;
+      opacity: 1;
+    }
+  }
+  animation-name: food-count-fadeIn;
+  animation-duration: @time;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.reduce-box-fadeIn(@time:1s) {
+  @keyframes leftChange {
+    0% {
+      left: 40px;
+      opacity: 0;
+      transform: rotate(0);
+    }
+    100% {
+      left: 0;
+      opacity: 1;
+      transform: rotate(-360deg);
+    }
+  }
+  animation-name: leftChange;
+  animation-duration: @time;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 </style>

@@ -9,7 +9,7 @@
     <food-list
       class="right-list"
       :groupIndex="curIndex"
-      :dataList="goodsData.goods"
+      :dataList="goodList"
       @groupChanged="foodGroupChanged"
     ></food-list>
   </div>
@@ -19,7 +19,8 @@
 import menuList from './components/MenuList/MenuList'
 import foodList from './components/FoodList/FoodList'
 import axios from 'axios'
-
+import $ from 'jquery'
+import Vue from 'vue'
 export default {
   name: 'goods',
   components: {
@@ -29,16 +30,28 @@ export default {
   data () {
     return {
       goodsData: [],
-      curIndex: 0
+      curIndex: 0,
+      goodList: []
     }
   },
   created () {
     let self = this
     axios.get('/static/data.json').then(res => {
       self.goodsData = res.data
+      self.resetData(res.data.goods)
     })
   },
   methods: {
+    resetData (goods) {
+      let ary = goods
+      $.each(ary, function (index, foods) {
+        $.each(foods.foods, function (index, food) {
+          Vue.set(food, 'count', 0)
+        })
+      })
+      this.goodList = ary
+      console.log('hhhh', this.goodList)
+    },
     menuListClick (params) {
       console.log('外部接收到点击------', params)
       this.curIndex = params
