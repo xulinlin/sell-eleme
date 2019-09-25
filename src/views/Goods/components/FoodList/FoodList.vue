@@ -2,10 +2,10 @@
   <div class="food-list-wrapper">
     <div class="ul-out-wrapper">
       <ul class="ul-out-box">
-        <li v-for="(item, index) in dataList" :key="index">
+        <li v-for="(item, index1) in foodList" :key="index1">
           <h1 class="title-box">{{item.name}}</h1>
           <ul class="ul-inner-box">
-            <li v-for="(food, index) in item.foods" :key="index">
+            <li v-for="(food, index2) in item.foods" :key="index2">
               <div class="food-box">
                 <div class="left-box">
                   <img class="food-img" :src="food.icon" />
@@ -25,18 +25,18 @@
                 <div class="right-box">
                   <div
                     class="reduce-box"
-                    :class="foodCount>0 ? 'reduce-box-fade-in' : ''"
-                    v-show="foodCount>0"
-                    @click.stop.prevent="reduceFood"
+                    :class="food.count>0 ? 'reduce-box-fade-in' : ''"
+                    v-show="food.count>0"
+                    @click.stop.prevent="reduceFood(food)"
                   >
                     <i class="i-icon iconfont2 remove_circle_outline"></i>
                   </div>
                   <div
                     class="food-count"
-                    :class="foodCount>0 ? 'food-count-fade-in' : ''"
-                    v-show="foodCount>0"
-                  >{{foodCount}}</div>
-                  <div @click.stop.prevent="addFood">
+                    :class="food.count>0 ? 'food-count-fade-in' : ''"
+                    v-show="true"
+                  >{{food.count}}</div>
+                  <div @click.stop.prevent="addFood(food)">
                     <i class="i-icon iconfont2 add_circle"></i>
                   </div>
                 </div>
@@ -51,7 +51,6 @@
 
 <script>
 import $ from 'jquery'
-
 export default {
   name: 'FoodList',
   props: {
@@ -73,10 +72,14 @@ export default {
       topAry: [],
       isScroll: true,
       curTop: 0,
-      foodCount: 0
+      foodCount: 0,
+      foodList: []
     }
   },
   watch: {
+    dataList (newV, oldV) {
+      this.foodList = this.dataList
+    },
     groupIndex (newV, oldV) {
       this.scrollToIndex(newV)
     },
@@ -163,12 +166,12 @@ export default {
       return h === self.curTop
     },
 
-    addFood () {
-      this.foodCount++
+    addFood (food) {
+      food.count++
     },
 
-    reduceFood () {
-      this.foodCount--
+    reduceFood (food) {
+      food.count--
     }
   },
   destroyed () {}
@@ -255,7 +258,6 @@ export default {
             height: 100%;
             align-items: center;
             justify-content: space-between;
-            // width: 70px;
             .reduce-box {
               position: relative;
               left: 40px;
@@ -272,13 +274,15 @@ export default {
 
             .food-count {
               position: relative;
-              opacity: 0;
+              visibility: hidden;
               font-size: 14px;
               margin: 0 4px;
-              left: 20px;
+              left: 15px;
+              opacity: 0;
             }
 
             .food-count-fade-in {
+              visibility: visible;
               .food-count-fadeIn(0.5s, 20px, 0px);
             }
 
